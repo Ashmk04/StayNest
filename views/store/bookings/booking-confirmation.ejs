@@ -1,0 +1,202 @@
+<%- include("../../partials/head") %>
+</head>
+
+<%- include("../../partials/nav") %>
+
+<body class="min-h-screen bg-gray-50 pt-16">
+
+<div class="max-w-4xl mx-auto px-6 py-10">
+
+    <div class="text-center mb-8">
+
+        <div class="w-16 h-16 mx-auto rounded-full bg-green-100 flex items-center justify-center">
+            <span class="text-3xl text-green-600">✓</span>
+        </div>
+
+        <h1 class="text-3xl font-bold text-gray-800 mt-5">
+            Booking confirmed!
+        </h1>
+
+        <p class="text-gray-500 mt-2">
+            Your reservation has been successfully confirmed.
+        </p>
+
+    </div>
+
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+
+        <div class="grid grid-cols-1 md:grid-cols-2">
+
+            <div>
+                <img
+                    src="<%= booking.home.image %>"
+                    alt="<%= booking.home.houseName %>"
+                    class="w-full h-full min-h-[300px] object-cover"
+                >
+            </div>
+
+
+            <div class="p-7">
+
+                <p class="text-sm text-gray-500 mb-1">
+                    Booking confirmed
+                </p>
+
+                <h2 class="text-2xl font-bold text-gray-800">
+                    <%= booking.home.houseName %>
+                </h2>
+
+                <p class="text-gray-500 mt-1">
+                    <%= booking.home.location %>
+                </p>
+
+                <div class="mt-5">
+                    <p class="text-sm text-gray-500">
+                        Booking ID
+                    </p>
+
+                    <p class="font-medium text-gray-800">
+                        <%= booking._id %>
+                    </p>
+                </div>
+
+
+                <div class="border-t border-gray-200 my-5"></div>
+
+                <div class="grid grid-cols-2 gap-4">
+
+                    <div>
+                        <p class="text-sm text-gray-500">
+                            Check-in
+                        </p>
+
+                        <p class="font-semibold text-gray-800 mt-1">
+                            <%= booking.checkIn.toDateString() %>
+                        </p>
+                    </div>
+
+
+                    <div>
+                        <p class="text-sm text-gray-500">
+                            Check-out
+                        </p>
+
+                        <p class="font-semibold text-gray-800 mt-1">
+                            <%= booking.checkOut.toDateString() %>
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="border-t border-gray-200 my-5"></div>
+
+
+                <div class="flex justify-between mb-3">
+
+                    <span class="text-gray-600">
+                        Number of nights
+                    </span>
+
+                    <span class="font-medium">
+                        <%= booking.nights %>
+                    </span>
+
+                </div>
+
+
+                <div class="flex justify-between mb-3">
+
+                    <span class="text-gray-600">
+                        Price per night
+                    </span>
+
+                    <span class="font-medium">
+                        ₹<%= booking.home.price %>
+                    </span>
+
+                </div>
+
+
+                <div class="border-t border-gray-200 pt-4 mt-4">
+
+                    <div class="flex justify-between">
+
+                        <span class="text-lg font-semibold text-gray-800">
+                            Total
+                        </span>
+
+                        <span class="text-xl font-bold text-gray-800">
+                            ₹<%= booking.totalPrice %>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mt-6">
+
+        <h2 class="text-xl font-semibold text-gray-800 mb-5">
+            Guest information
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Name
+                </p>
+
+                <p class="font-medium text-gray-800 mt-1">
+                    <%= booking.guest.firstName %>
+                    <%= booking.guest.lastName %>
+                </p>
+            </div>
+
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Email
+                </p>
+
+                <p class="font-medium text-gray-800 mt-1">
+                    <%= booking.guest.email %>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-7">
+
+        <a
+            href="/my-bookings"
+            class="flex-1 text-center border border-gray-300 hover:bg-gray-50 text-gray-800 font-semibold py-3 rounded-lg transition"
+        >
+            View my bookings
+        </a>
+
+        <a
+            href="/StayNestHomes"
+            class="flex-1 text-center bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 rounded-lg transition"
+        >
+            Explore more homes
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<%- include("../partials/head") %>
+</head>
+
+<%- include("../partials/nav") %>
+
+<body class="min-h-screen bg-gray-50 pt-16">
+
+    <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-10">
+
+        <div class="w-full max-w-md rounded-2xl bg-white px-6 py-8 shadow-lg sm:px-8 sm:py-10">
+
+            <h1 class="mb-6 text-center text-3xl font-bold text-rose-500">
+                Login
+            </h1>
+
+            <form action="/login" method="POST" class="space-y-4">
+
+                <%- include("../partials/errors") %>
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    name="email"
+                    value="<%= oldInput.email ? oldInput.email : '' %>"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <input
+                    type="password"
+                    placeholder="Enter your password"
+                    name="password"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <button
+                    type="submit"
+                    class="w-full cursor-pointer rounded-xl bg-rose-500 py-3
+                           font-semibold text-white transition duration-200 hover:bg-rose-600">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="mt-5 text-center text-sm text-gray-500">
+                Don't have an account?
+                <a href="/signup" class="font-semibold text-rose-500 hover:underline">
+                    Sign Up
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

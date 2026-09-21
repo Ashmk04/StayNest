@@ -1,0 +1,117 @@
+<%- include("../partials/head") %>
+</head>
+
+<%- include("../partials/nav") %>
+
+<body class="min-h-screen bg-gray-50 pt-16">
+
+    <div class="flex min-h-[calc(100vh-4rem)] justify-center px-4 py-10">
+
+        <div class="w-full max-w-lg rounded-2xl bg-white px-6 py-8 shadow-lg sm:px-8 sm:py-10">
+
+            <h1 class="mb-6 text-center text-3xl font-bold text-rose-500">
+                <%= editing ? "Update Home Details" : "Register Your Home" %>
+            </h1>
+
+            <form
+                action="/<%= editing ? 'editHome' : 'add-home' %>" method="POST" enctype="multipart/form-data"
+                class="space-y-4">
+
+                <%- include("../partials/errors") %>
+
+                <input
+                    type="hidden"
+                    name="_id"
+                    value="<%= editing ? home._id : '' %>"
+                >
+
+                <input
+                    type="text"
+                    placeholder="Enter home name"
+                    name="houseName"
+                    value="<%= oldInput?.houseName || (editing ? home.houseName : '') %>"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <input
+                    type="tel"
+                    placeholder="Enter contact number"
+                    name="contact"
+                    value="<%= oldInput?.contact || (editing ? home.contact : '') %>"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <input
+                    type="number"
+                    placeholder="Price per night"
+                    name="price"
+                    value="<%= oldInput?.price || (editing ? home.price : '') %>"
+                    required
+                    min="0"
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <input
+                    type="text"
+                    placeholder="Enter location"
+                    name="location"
+                    value="<%= oldInput?.location || (editing ? home.location : '') %>"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <input
+                    type="number"
+                    placeholder="Rating"
+                    name="rating"
+                    value="<%= oldInput?.rating || (editing ? home.rating : '') %>"
+                    required
+                    min="0"
+                    max="5"
+                    step="0.1"
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    <%= editing? '' : 'required' %>
+                    class="w-full cursor-pointer rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-600
+                           file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-rose-50
+                           file:px-4 file:py-2 file:text-sm file:font-semibold file:text-rose-600
+                           hover:file:bg-rose-100
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+
+                <textarea
+                    placeholder="Describe your home"
+                    name="description"
+                    required
+                    rows="4"
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3
+                           focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400 resize-none"><%= oldInput?.description || (editing ? home.description : '') %></textarea>
+
+                <button
+                    type="submit"
+                    class="w-full cursor-pointer rounded-xl bg-rose-500 py-3
+                           font-semibold text-white transition duration-200 hover:bg-rose-600">
+                    <%= editing ? "Update Home" : "Register Home" %>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

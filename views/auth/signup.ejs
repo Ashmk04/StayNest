@@ -1,0 +1,119 @@
+<%- include("../partials/head") %>
+</head>
+
+<%- include("../partials/nav") %>
+
+<body class="min-h-screen bg-gray-50 pt-16">
+
+    <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-10">
+
+        <div class="w-full max-w-md rounded-2xl bg-white px-6 py-8 shadow-lg sm:px-8 sm:py-10">
+
+            <h1 class="mb-6 text-center text-3xl font-bold text-rose-500">
+                Sign Up
+            </h1>
+
+            <form action="/signup" method="POST" class="space-y-4">
+
+                <%- include("../partials/errors") %>
+
+                <input
+                    type="text" name="firstName" placeholder="Enter your first name"
+                    value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                />
+
+                <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter your last name"
+                    value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                />
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                />
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                />
+
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-rose-400"
+                />
+
+                <div class="pt-1">
+                    <p class="mb-2 font-semibold text-gray-800">
+                        User type
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+
+                        <label class="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="userType"
+                                value="guest"
+                                checked
+                                class="h-4 w-4 accent-rose-500"
+                            />
+                            <span class="text-gray-700">Guest</span>
+                        </label>
+
+                        <label class="flex cursor-pointer items-center gap-2">
+                            <input
+                                type="radio"
+                                name="userType"
+                                value="host"
+                                class="h-4 w-4 accent-rose-500"
+                            />
+                            <span class="text-gray-700">Host</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <label class="flex cursor-pointer items-start gap-2 pt-1">
+                    <input type="checkbox" name="terms" id="terms" required class="mt-0.5 accent-rose-500">
+
+                    <span class="text-sm text-gray-700">
+                        I agree to the terms and conditions.
+                    </span>
+                </label>
+
+                <button type="submit" class="w-full cursor-pointer rounded-xl bg-rose-500 py-3
+                       font-semibold text-white transition duration-200 hover:bg-rose-600">
+                    Sign Up
+                </button>
+
+            </form>
+
+            <p class="mt-5 text-center text-sm text-gray-500">
+                Already have an account?
+                <a href="/login" class="font-semibold text-rose-500 hover:underline">
+                    Login
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

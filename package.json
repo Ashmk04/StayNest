@@ -1,0 +1,36 @@
+{
+  "name": "dynamic-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch",
+    "server": "nodemon app.js",
+    "dev": "concurrently \"npm run tailwind\" \"npm run server\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.3.0",
+    "connect-mongodb-session": "^5.0.0",
+    "dotenv": "^18.0.1",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "mongodb": "^7.6.0",
+    "mongoose": "^8.9.5",
+    "multer": "^2.3.0",
+    "mysql2": "^3.23.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

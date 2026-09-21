@@ -1,0 +1,67 @@
+<%- include("../partials/head") %>
+</head>
+
+<%- include("../partials/nav") %>
+
+<body class="min-h-screen bg-gray-50 pt-16">
+
+    <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+
+        <h1 class="mb-6 text-center text-2xl font-bold text-rose-500 sm:text-left sm:text-3xl">
+            Home Details
+        </h1>
+
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+
+                <div class="aspect-[4/3] w-full overflow-hidden bg-gray-100 md:aspect-auto md:h-full">
+                    <img src="<%= home.image %>" alt="<%= home.houseName %>" class="h-full w-full object-cover" />
+                </div>
+
+                <div class="flex flex-col gap-3 p-6 sm:p-8">
+
+                    <h2 class="text-2xl font-bold text-gray-900">
+                        <%= home.houseName %>
+                    </h2>
+
+                    <p class="text-sm text-gray-500">
+                        📍 <%= home.location %>
+                    </p>
+
+                    <p class="text-sm text-gray-500">
+                        ☎️ <%= home.contact %>
+                    </p>
+
+                    <% if(home.description){ %>
+                        <p class="mt-1 text-sm leading-relaxed text-gray-600">
+                            <%= home.description %>
+                        </p>
+                    <% } %>
+
+                    <div class="mt-2 flex items-center justify-between border-t border-gray-100 pt-4">
+                        <p class="text-2xl font-bold text-gray-900">
+                            🏷️ <%= home.price %> <span class="text-sm font-normal text-gray-500">/ night</span>
+                        </p>
+                        <p class="font-semibold text-gray-700">
+                            ⭐ <%= home.rating %>
+                        </p>
+                    </div>
+
+                    <div class="mt-4 flex items-center gap-3">
+
+                        <%- include("../partials/book",{home:home}) %>
+                               
+                        <%- include("../partials/favourites", {home:home}) %>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

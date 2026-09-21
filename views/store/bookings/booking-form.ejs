@@ -1,0 +1,206 @@
+<%- include("../../partials/head") %>
+</head>
+
+<%- include("../../partials/nav") %>
+
+<body class="min-h-screen bg-gray-50 pt-16">
+
+<div class="max-w-5xl mx-auto px-4 py-8">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+
+            <img
+                src="<%= home.image %>"
+                alt="<%= home.houseName %>"
+                class="w-full h-72 object-cover"
+            >
+
+            <div class="p-6">
+
+                <h1 class="text-2xl font-bold text-gray-800">
+                    <%= home.houseName %>
+                </h1>
+
+                <p class="text-gray-500 mt-2">
+                    <%= home.location %>
+                </p>
+
+                <div class="flex items-center gap-2 mt-3">
+                    <span class="text-yellow-500">★</span>
+                    <span class="font-medium">
+                        <%= home.rating %>
+                    </span>
+                </div>
+
+                <p class="text-gray-600 mt-4">
+                    <%= home.description %>
+                </p>
+
+                <div class="mt-5">
+                    <span class="text-2xl font-bold">
+                        ₹<%= home.price %>
+                    </span>
+                    <span class="text-gray-500">
+                        / night
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-md p-6">
+
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                Reserve your stay
+            </h2>
+
+            <form action="/bookings/booking-confirmation" method="POST">
+
+                <%- include("../../partials/errors") %>
+
+                <input
+                    type="hidden"
+                    name="homeId"
+                    value="<%= home._id %>"
+                >
+
+                <div class="mb-5">
+
+                    <label
+                        for="checkIn"
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Check-in
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkIn"
+                        name="checkIn"
+                        min="<%= new Date().toISOString().split('T')[0] %>"
+                        required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                    >
+
+                </div>
+
+                <div class="mb-5">
+
+                    <label
+                        for="checkOut"
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Check-out
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkOut"
+                        name="checkOut"
+                        min="<%= new Date().toISOString().split('T')[0] %>"
+                        required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                    >
+
+                </div>
+
+                <div class="border-t pt-5 mt-6">
+
+                    <div class="flex justify-between mb-3">
+                        <span class="text-gray-600">
+                            ₹<%= home.price %> × nights
+                        </span>
+
+                        <span id="totalPrice">
+                            ₹0
+                        </span>
+                    </div>
+
+                    <div class="flex justify-between font-bold text-lg">
+                        <span>Total</span>
+                        <span id="finalPrice">
+                            ₹0
+                        </span>
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full mt-6 bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 rounded-lg transition"
+                >
+                    Reserve
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const checkIn = document.getElementById("checkIn");
+    const checkOut = document.getElementById("checkOut");
+
+    const totalPrice = document.getElementById("totalPrice");
+    const finalPrice = document.getElementById("finalPrice");
+
+    const pricePerNight = <%= home.price %>;
+
+
+    function calculatePrice() {
+
+        if (!checkIn.value || !checkOut.value) {
+            totalPrice.textContent = "₹0";
+            finalPrice.textContent = "₹0";
+            return;
+        }
+
+        const start = new Date(checkIn.value);
+        const end = new Date(checkOut.value);
+
+        const difference =
+            end.getTime() - start.getTime();
+
+        const nights =
+            difference / (1000 * 60 * 60 * 24);
+
+        if (nights <= 0) {
+            totalPrice.textContent = "₹0";
+            finalPrice.textContent = "₹0";
+            return;
+        }
+
+        const total = nights * pricePerNight;
+
+        totalPrice.textContent =
+            `₹${pricePerNight} × ${nights}`;
+
+        finalPrice.textContent =
+            `₹${total}`;
+
+    }
+
+
+    checkIn.addEventListener("change", () => {
+
+        checkOut.min = checkIn.value;
+
+        calculatePrice();
+
+    });
+
+
+    checkOut.addEventListener("change", calculatePrice);
+
+</script>
+
+</body>
+
+</html>
